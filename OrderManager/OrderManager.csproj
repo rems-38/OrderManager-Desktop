@@ -11,20 +11,17 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="AddCommand.xaml" />
-    <None Remove="RefreshCommand.xaml" />
+    <None Remove="OrderManager.config" />
+    <None Remove="OrderManager.exe.config" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.10" />
     <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.10" />
     <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.10" />
+    <PackageReference Include="MySqlConnector" Version="2.1.10" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
     <Manifest Include="$(ApplicationManifest)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="RefreshCommand.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
 
   <ItemGroup>

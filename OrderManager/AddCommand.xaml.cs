@@ -39,11 +39,6 @@ namespace OrderManager
                     break;
 
                 case "add":
-                    addFrame.Navigate(typeof(AddCommand), null, new SuppressNavigationTransitionInfo());
-                    break;
-
-                case "refresh":
-                    addFrame.Navigate(typeof(RefreshCommand), null, new SuppressNavigationTransitionInfo());
                     break;
             }
         }

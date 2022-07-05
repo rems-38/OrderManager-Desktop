@@ -22,7 +22,6 @@
                 <muxc:NavigationView.MenuItems>
                     <muxc:NavigationViewItem Icon="Home" Content="Commandes" Tag="home"/>
                     <muxc:NavigationViewItem Icon="Add" Content="Nouvelle Commande" Tag="add"/>
-                    <muxc:NavigationViewItem Icon="Refresh" Content="Rafraichir les commandes" Tag="refresh"/>
                 </muxc:NavigationView.MenuItems>
             </muxc:NavigationView>
 
