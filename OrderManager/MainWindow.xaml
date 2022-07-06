@@ -9,26 +9,7 @@
     mc:Ignorable="d">
 
     <muxc:Frame Name="rootFrame">
-        <muxc:Frame.ContentTransitions>
-            <TransitionCollection>
-                <NavigationThemeTransition/>
-            </TransitionCollection>
-        </muxc:Frame.ContentTransitions>
-
-        <muxc:Grid>
-            
-            <muxc:NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="False">
-                <muxc:NavigationView.MenuItems>
-                    <muxc:NavigationViewItem Icon="Home" Content="Commandes" Tag="home"/>
-                    <muxc:NavigationViewItem Icon="Add" Content="Nouvelle Commande" Tag="add"/>
-                </muxc:NavigationView.MenuItems>
-            </muxc:NavigationView>
-
-            <muxc:StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <muxc:TextBlock Text="Vous avez X commandes" x:Name="nbr_command"></muxc:TextBlock>
-            </muxc:StackPanel>
-            
-        </muxc:Grid>
+        
     </muxc:Frame>
 
 </Window>

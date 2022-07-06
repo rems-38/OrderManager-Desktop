@@ -25,8 +25,48 @@
                 </muxc:NavigationView.MenuItems>
             </muxc:NavigationView>
 
+            <muxc:StackPanel Margin="70, 50, 0, 0">
+
+                <TextBlock FontSize="40" Text="Ajout d'une nouvelle commande" TextDecorations="Underline"/>
+
+                <muxc:StackPanel Orientation="Vertical" Margin="50, 20, 0, 0">
+
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Nom de l'acheteur :</muxc:TextBlock>
+                        <muxc:TextBox x:Name="name" Width="150"></muxc:TextBox>
+                    </muxc:StackPanel>
+                    
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Prix :</muxc:TextBlock>
+                        <muxc:TextBox x:Name="price" Width="150"></muxc:TextBox>
+                    </muxc:StackPanel>
+
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Status :</muxc:TextBlock>
+                        <muxc:ComboBox Name="statusBox" PlaceholderText="Choisir un status" Width="200">
+                            <x:String>En cours</x:String>
+                            <x:String>Terminée</x:String>
+                            <x:String>Pas vendu</x:String>
+                            <x:String>Pas payé</x:String>
+                            <x:String>Abandon</x:String>
+                        </muxc:ComboBox>
+                    </muxc:StackPanel>
+
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Plateforme :</muxc:TextBlock>
+                        <muxc:ComboBox x:Name="platformBox" PlaceholderText="Choisir une plateforme" Width="200">
+                            <x:String>Fiverr</x:String>
+                            <x:String>5euros</x:String>
+                            <x:String>Leboncoin</x:String>
+                        </muxc:ComboBox>
+                    </muxc:StackPanel>
+
+                    <muxc:Button x:Name="addCommandButton" Margin="-30, 60, 0, 0" Click="addCommandButton_Click">Ajouter cette commande</muxc:Button>
+
+                </muxc:StackPanel>
+
+            </muxc:StackPanel>
+
         </muxc:Grid>
-
-
     </muxc:Frame>
 </Page>

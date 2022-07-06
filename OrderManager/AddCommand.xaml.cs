@@ -1,27 +1,11 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
+﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Navigation;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using MySqlConnector;
+using System.Configuration;
+using System.Diagnostics;
 
 namespace OrderManager
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class AddCommand : Page
     {
         public AddCommand()
@@ -35,12 +19,48 @@ namespace OrderManager
             switch (item.Tag.ToString())
             {
                 case "home":
-                    addFrame.Navigate(typeof(MainWindow), null, new SuppressNavigationTransitionInfo());
+                    addFrame.Navigate(typeof(Home), null, new SuppressNavigationTransitionInfo());
                     break;
 
                 case "add":
                     break;
             }
+        }
+
+        private void addCommandButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            Database db = new Database();
+            string addCommandQuery = "INSERT INTO `commandes` (`buyer_name`, `price`, `status`, `platform`) VALUES ('" + name.Text + "', '" + price.Text + "', '" + statusBox.SelectedItem + "', '" + platformBox.SelectedItem + "')";
+            MySqlCommand addCommandCommand = new MySqlCommand(addCommandQuery, db.dbConnection);
+            db.OpenConnection();
+            addCommandCommand.ExecuteScalar();
+            db.CloseConnection();
+        }
+
+        class Database
+        {
+            public MySqlConnection dbConnection;
+
+            public Database()
+            {
+                string server = ConfigurationManager.AppSettings.Get("server");
+                string user = ConfigurationManager.AppSettings.Get("user");
+                string password = ConfigurationManager.AppSettings.Get("password");
+                string database = ConfigurationManager.AppSettings.Get("database");
+
+                dbConnection = new MySqlConnection("Server=" + server + ";User ID=" + user + ";Password=" + password + ";Database=" + database);
+            }
+
+            public void OpenConnection()
+            {
+                dbConnection.Open();
+            }
+
+            public void CloseConnection()
+            {
+                dbConnection.Close();
+            }
+
         }
     }
 
