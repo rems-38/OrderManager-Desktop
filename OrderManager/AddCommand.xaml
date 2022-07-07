@@ -35,7 +35,7 @@
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Nom de l'acheteur :</muxc:TextBlock>
                         <muxc:TextBox x:Name="name" Width="150"></muxc:TextBox>
                     </muxc:StackPanel>
-                    
+
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Prix :</muxc:TextBlock>
                         <muxc:TextBox x:Name="price" Width="150"></muxc:TextBox>
