@@ -12,6 +12,10 @@ namespace OrderManager
         public AddCommand()
         {
             this.InitializeComponent();
+
+            foreach (string service in ConfigurationManager.AppSettings["service_name"].Split(',')) { serviceBox.Items.Add(service); }
+            foreach (string status in ConfigurationManager.AppSettings["status"].Split(',')) { statusBox.Items.Add(status); }
+            foreach (string platform in ConfigurationManager.AppSettings["platform"].Split(',')) { platformBox.Items.Add(platform); }
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)

@@ -38,13 +38,7 @@
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Nom du service :</muxc:TextBlock>
-                        <muxc:ComboBox Name="serviceBox" PlaceholderText="Choisir un service" Width="200">
-                            <x:String>Python Program</x:String>
-                            <x:String>Audit SEO</x:String>
-                            <x:String>Website Creation</x:String>
-                            <x:String>FIGMA to HTML</x:String>
-                            <x:String>Autre/Personnalisé</x:String>
-                        </muxc:ComboBox>
+                        <muxc:ComboBox Name="serviceBox" PlaceholderText="Choisir un service" Width="200"></muxc:ComboBox>
                     </muxc:StackPanel>
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
@@ -59,22 +53,12 @@
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Status :</muxc:TextBlock>
-                        <muxc:ComboBox Name="statusBox" PlaceholderText="Choisir un status" Width="200">
-                            <x:String>En cours</x:String>
-                            <x:String>Terminée</x:String>
-                            <x:String>Pas vendu</x:String>
-                            <x:String>Pas payé</x:String>
-                            <x:String>Abandon</x:String>
-                        </muxc:ComboBox>
+                        <muxc:ComboBox Name="statusBox" PlaceholderText="Choisir un status" Width="200"></muxc:ComboBox>
                     </muxc:StackPanel>
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Plateforme :</muxc:TextBlock>
-                        <muxc:ComboBox x:Name="platformBox" PlaceholderText="Choisir une plateforme" Width="200">
-                            <x:String>Fiverr</x:String>
-                            <x:String>5euros</x:String>
-                            <x:String>Leboncoin</x:String>
-                        </muxc:ComboBox>
+                        <muxc:ComboBox x:Name="platformBox" PlaceholderText="Choisir une plateforme" Width="200"></muxc:ComboBox>
                     </muxc:StackPanel>
 
                     <muxc:Button x:Name="addCommandButton" Margin="-30, 60, 0, 0" Click="addCommandButton_Click">Ajouter cette commande</muxc:Button>
