@@ -25,13 +25,14 @@
                 </muxc:NavigationView.MenuItems>
             </muxc:NavigationView>
 
-            <muxc:TextBlock x:Name="title" Text="Vous avez X commandes (dont Y en cours)" FontWeight="Bold" FontSize="25" TextDecorations="Underline" Margin="70, 40"></muxc:TextBlock>
+            <muxc:TextBlock x:Name="title" Text="Vous avez X commandes (dont Y en cours)" FontWeight="Bold" FontSize="40" Margin="70, 40"></muxc:TextBlock>
 
             <muxc:Grid x:Name="Content" Margin="40, 0" Width="1224">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="110" />
                     <!--<RowDefinition Height="50" />
-                    <RowDefinition Height="50" />-->
+                    <RowDefinition Height="50" />
+                    .....-->
                 </Grid.RowDefinitions>
 
                 <!--<muxc:Grid muxc:Grid.Row="1">

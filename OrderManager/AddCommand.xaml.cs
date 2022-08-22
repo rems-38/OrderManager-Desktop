@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using MySqlConnector;
 using System.Configuration;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace OrderManager
 {
@@ -30,7 +31,7 @@ namespace OrderManager
         private void addCommandButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             Database db = new Database();
-            string addCommandQuery = "INSERT INTO `commandes` (`buyer_name`, `price`, `status`, `platform`) VALUES ('" + name.Text + "', '" + price.Text + "', '" + statusBox.SelectedItem + "', '" + platformBox.SelectedItem + "')";
+            string addCommandQuery = "INSERT INTO `commandes` (`buyer_name`, `service_name`, `platform`, `price`, `status`, `description`) VALUES ('" + MySQLEscape(name.Text) + "', '" + serviceBox.SelectedItem + "', '" + ChangeValue(platformBox.SelectedItem) + "', '" + MySQLEscape(price.Text) + "', '" + ChangeValue(statusBox.SelectedItem) + "', '" + MySQLEscape(description.Text) + "')";
             MySqlCommand addCommandCommand = new MySqlCommand(addCommandQuery, db.dbConnection);
             db.OpenConnection();
             addCommandCommand.ExecuteScalar();
@@ -61,6 +62,59 @@ namespace OrderManager
                 dbConnection.Close();
             }
 
+        }
+
+        public static string MySQLEscape(string str)
+        {
+            return Regex.Replace(str, @"[\x00'""\b\n\r\t\cZ\\%_]",
+                delegate (Match match)
+                {
+                    string v = match.Value;
+                    switch (v)
+                    {
+                        case "\x00":            // ASCII NUL (0x00) character
+                            return "\\0";
+                        case "\b":              // BACKSPACE character
+                            return "\\b";
+                        case "\n":              // NEWLINE (linefeed) character
+                            return "\\n";
+                        case "\r":              // CARRIAGE RETURN character
+                            return "\\r";
+                        case "\t":              // TAB
+                            return "\\t";
+                        case "\u001A":          // Ctrl-Z
+                            return "\\Z";
+                        default:
+                            return "\\" + v;
+                    }
+                });
+        }
+
+        public static string ChangeValue(object obj)
+        {
+            switch (obj)
+            {
+                case "En cours":
+                    return "en_cours";
+                case "Terminée":
+                    return "terminée";
+                case "Pas vendu":
+                    return "pas_vendu";
+                case "Pas payé":
+                    return "pas_payé";
+                case "Abandon":
+                    return "abandon";
+
+                case "Fiverr":
+                    return "fiverr";
+                case "5euros":
+                    return "5euros";
+                case "Leboncoin":
+                    return "leboncoin";
+
+                default:
+                    return "";
+            }
         }
     }
 

@@ -39,13 +39,13 @@ namespace OrderManager
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(7) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(140) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(600) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(575) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(25) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5) });
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
                 Grid.SetRow(grid, (2 * nbr[0]) + 1);
                 Content.Children.Add(grid);
@@ -137,6 +137,16 @@ namespace OrderManager
                 Button btnDelete = new Button { Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/waste_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
                 Grid.SetColumn(btnDelete, 10);
                 grid.Children.Add(btnDelete);
+
+                // Bordure autour d'une ligne entière
+                //for (int i = 1; i <= 10; i++)
+                //{
+                //    Border border = new Border { BorderBrush = new SolidColorBrush(Colors.White) };
+                //    if (i == 10) { border.BorderThickness = new Thickness(0, 1, 1, 1); }
+                //    else { border.BorderThickness = new Thickness(0, 1, 0, 1); }
+                //    Grid.SetColumn(border, i);
+                //    grid.Children.Add(border);
+                //}
 
                 nbr[0] += 1;
             }

@@ -27,7 +27,7 @@
 
             <muxc:StackPanel Margin="70, 50, 0, 0">
 
-                <TextBlock FontSize="40" Text="Ajout d'une nouvelle commande" TextDecorations="Underline"/>
+                <TextBlock FontSize="40" Text="Ajout d'une nouvelle commande" FontWeight="Bold" />
 
                 <muxc:StackPanel Orientation="Vertical" Margin="50, 20, 0, 0">
 
@@ -37,8 +37,24 @@
                     </muxc:StackPanel>
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Nom du service :</muxc:TextBlock>
+                        <muxc:ComboBox Name="serviceBox" PlaceholderText="Choisir un service" Width="200">
+                            <x:String>Python Program</x:String>
+                            <x:String>Audit SEO</x:String>
+                            <x:String>Website Creation</x:String>
+                            <x:String>FIGMA to HTML</x:String>
+                            <x:String>Autre/Personnalisé</x:String>
+                        </muxc:ComboBox>
+                    </muxc:StackPanel>
+
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
                         <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Prix :</muxc:TextBlock>
                         <muxc:TextBox x:Name="price" Width="150"></muxc:TextBox>
+                    </muxc:StackPanel>
+                    
+                    <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
+                        <muxc:TextBlock Margin="0, 0, 10, 0" FontSize="20">Description :</muxc:TextBlock>
+                        <muxc:TextBox x:Name="description" Width="150" Height="200"></muxc:TextBox>
                     </muxc:StackPanel>
 
                     <muxc:StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="-30, 0, 0, 0">
