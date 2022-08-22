@@ -52,7 +52,7 @@ namespace OrderManager
 
                 switch (commandsResult.GetString(commandsResult.GetOrdinal("status")))
                 {
-                    case "terminée":
+                    case "Terminée":
                         Rectangle rectStatus1 = new Rectangle { Fill = new SolidColorBrush(Colors.Green)};
                         Grid.SetColumn(rectStatus1, 1);
                         grid.Children.Add(rectStatus1);
@@ -62,7 +62,7 @@ namespace OrderManager
                         grid.Children.Add(textStatus1);
                         break;
 
-                    case "en_cours":
+                    case "En cours":
                         Rectangle rectStatus2 = new Rectangle { Fill = new SolidColorBrush(Colors.Blue) };
                         Grid.SetColumn(rectStatus2, 1);
                         grid.Children.Add(rectStatus2);
@@ -74,7 +74,7 @@ namespace OrderManager
                         nbr[1] += 1;
                         break;
 
-                    case "pas_vendu":
+                    case "Pas vendu":
                         Rectangle rectStatus3 = new Rectangle { Fill = new SolidColorBrush(Colors.Yellow) };
                         Grid.SetColumn(rectStatus3, 1);
                         grid.Children.Add(rectStatus3);
@@ -84,7 +84,7 @@ namespace OrderManager
                         grid.Children.Add(textStatus3);
                         break;
 
-                    case "pas_payé":
+                    case "Pas payé":
                         Rectangle rectStatus4 = new Rectangle { Fill = new SolidColorBrush(Colors.Orange) };
                         Grid.SetColumn(rectStatus4, 1);
                         grid.Children.Add(rectStatus4);
@@ -94,7 +94,7 @@ namespace OrderManager
                         grid.Children.Add(textStatus4);
                         break;
 
-                    case "abandon":
+                    case "Abandon":
                         Rectangle rectStatus5 = new Rectangle { Fill = new SolidColorBrush(Colors.Red) };
                         Grid.SetColumn(rectStatus5, 1);
                         grid.Children.Add(rectStatus5);
@@ -137,16 +137,6 @@ namespace OrderManager
                 Button btnDelete = new Button { Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/waste_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
                 Grid.SetColumn(btnDelete, 10);
                 grid.Children.Add(btnDelete);
-
-                // Bordure autour d'une ligne entière
-                //for (int i = 1; i <= 10; i++)
-                //{
-                //    Border border = new Border { BorderBrush = new SolidColorBrush(Colors.White) };
-                //    if (i == 10) { border.BorderThickness = new Thickness(0, 1, 1, 1); }
-                //    else { border.BorderThickness = new Thickness(0, 1, 0, 1); }
-                //    Grid.SetColumn(border, i);
-                //    grid.Children.Add(border);
-                //}
 
                 nbr[0] += 1;
             }
@@ -196,63 +186,6 @@ namespace OrderManager
             }
 
         }
-
-        class myGrid : Grid
-        {
-            public myGrid()
-            {
-
-            }
-        }
-
-        //class myText
-        //{
-        //    public myText(string t)
-        //    {
-        //        MyText(t);
-        //    }
-
-        //    public TextBlock MyText(string t)
-        //    {
-        //        TextBlock text = new TextBlock();
-
-        //        text.Text = t;
-        //        text.HorizontalAlignment = HorizontalAlignment.Center;
-        //        text.VerticalAlignment = VerticalAlignment.Center;
-
-        //        return text;
-        //    }
-
-        //    public static implicit operator TextBlock(myText v)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
-
-        //class myImage
-        //{
-        //    public myImage(string t)
-        //    {
-        //        MyImage(t);
-        //    }
-
-        //    public static System.Drawing.Image MyImage(string t)
-        //    {
-        //        System.Drawing.Image img = new System.Drawing.Image();
-
-        //        switch (t)
-        //        {
-        //            case "fiverr":
-        //                img.Source
-        //                break;
-
-        //            case "5euros":
-        //                break;
-        //        }
-
-        //        return img;
-        //    }
-        //}
 
         private void NavView_PaneOpening(NavigationView sender, object args)
         {

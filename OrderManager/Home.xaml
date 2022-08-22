@@ -30,41 +30,7 @@
             <muxc:Grid x:Name="Content" Margin="40, 0" Width="1224">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="110" />
-                    <!--<RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    .....-->
                 </Grid.RowDefinitions>
-
-                <!--<muxc:Grid muxc:Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="7" />
-                        <ColumnDefinition Width="75" />
-                        <ColumnDefinition Width="60" />
-                        <ColumnDefinition Width="140" />
-                        <ColumnDefinition Width="70" />
-                        <ColumnDefinition Width="110" />
-                        <ColumnDefinition Width="600" />
-                        <ColumnDefinition Width="75" />
-                        <ColumnDefinition Width="25" />
-                        <ColumnDefinition Width="75" />
-                    </Grid.ColumnDefinitions>
-
-                    <Rectangle muxc:Grid.Column="1" Fill="Green"></Rectangle>
-                    <muxc:Image muxc:Grid.Column="2" Source="Assets/fiverr_200px.png" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:Image>
-                    <muxc:TextBlock muxc:Grid.Column="3" Text="gionata" VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:TextBlock>
-                    <muxc:TextBlock muxc:Grid.Column="4" Text="Python Program" VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:TextBlock>
-                    <muxc:TextBlock muxc:Grid.Column="5" Text="$12.5" VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:TextBlock>
-                    <muxc:TextBlock muxc:Grid.Column="6" Text="Terminée" VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:TextBlock>
-                    <muxc:TextBlock muxc:Grid.Column="7" Text="Description : ..............................................................." VerticalAlignment="Center" HorizontalAlignment="Center"></muxc:TextBlock>
-                    <muxc:Button muxc:Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <muxc:Image Source="Assets/edit_96px.png"></muxc:Image>
-                    </muxc:Button>
-                    <muxc:Button muxc:Grid.Column="10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <muxc:Image Source="Assets/waste_96px.png"></muxc:Image>
-                    </muxc:Button>
-
-                </muxc:Grid> -->
 
             </muxc:Grid>
         </muxc:Grid>

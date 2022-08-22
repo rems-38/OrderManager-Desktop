@@ -35,7 +35,7 @@ namespace OrderManager
         private void addCommandButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
             Database db = new Database();
-            string addCommandQuery = "INSERT INTO `commandes` (`buyer_name`, `service_name`, `platform`, `price`, `status`, `description`) VALUES ('" + MySQLEscape(name.Text) + "', '" + serviceBox.SelectedItem + "', '" + ChangeValue(platformBox.SelectedItem) + "', '" + MySQLEscape(price.Text) + "', '" + ChangeValue(statusBox.SelectedItem) + "', '" + MySQLEscape(description.Text) + "')";
+            string addCommandQuery = "INSERT INTO `commandes` (`buyer_name`, `service_name`, `platform`, `price`, `status`, `description`) VALUES ('" + MySQLEscape(name.Text) + "', '" + serviceBox.SelectedItem + "', '" + platformBox.SelectedItem + "', '" + MySQLEscape(price.Text) + "', '" + statusBox.SelectedItem + "', '" + MySQLEscape(description.Text) + "')";
             MySqlCommand addCommandCommand = new MySqlCommand(addCommandQuery, db.dbConnection);
             db.OpenConnection();
             addCommandCommand.ExecuteScalar();
@@ -92,33 +92,6 @@ namespace OrderManager
                             return "\\" + v;
                     }
                 });
-        }
-
-        public static string ChangeValue(object obj)
-        {
-            switch (obj)
-            {
-                case "En cours":
-                    return "en_cours";
-                case "Terminée":
-                    return "terminée";
-                case "Pas vendu":
-                    return "pas_vendu";
-                case "Pas payé":
-                    return "pas_payé";
-                case "Abandon":
-                    return "abandon";
-
-                case "Fiverr":
-                    return "fiverr";
-                case "5euros":
-                    return "5euros";
-                case "Leboncoin":
-                    return "leboncoin";
-
-                default:
-                    return "";
-            }
         }
     }
 
