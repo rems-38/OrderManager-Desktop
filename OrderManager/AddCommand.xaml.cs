@@ -97,25 +97,20 @@ namespace OrderManager
                 });
         }
 
-        // New feature (maybe) -> add more platforms (ex) in the config file (permanent way : in the App.config file; and temporally way : in the "cache")
+        // New feature (maybe) -> add more platforms (ex) in the config file (permanent way : in the App.config file; and temporally way : in the cache/memory)
         // Need :
         //  - TextBox for the name of the platform (x:Name="addPlatform")
         //  - Button for validate the addition (x:Name="addPlatformButton" Click="addPlatformButton_Click")
         //
         //private void addPlatformButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         //{
-        //    // "Cache" modification
         //    Configuration configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         //    configFile.AppSettings.Settings["platform"].Value = ConfigurationManager.AppSettings.Get("platform") + "," + addPlatform.Text;
+        //    // Save in memory (for modify during the execution)
         //    configFile.Save(ConfigurationSaveMode.Modified);
+        //    // Save in the App.config file (for persistence)
+        //    configFile.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\OrderManager\\App.config");
         //    ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-
-        //    // App.config modification
-        //    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap { ExeConfigFilename = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\OrderManager\\App.config" };
-        //    Configuration configFile2 = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-        //    configFile2.AppSettings.Settings["platform"].Value = ConfigurationManager.AppSettings.Get("platform");
-        //    configFile2.Save(ConfigurationSaveMode.Modified);
-        //    ConfigurationManager.RefreshSection(configFile2.AppSettings.SectionInformation.Name);
 
         //    // Refresh page
         //    addFrame.Navigate(typeof(AddCommand), null, new SuppressNavigationTransitionInfo());
