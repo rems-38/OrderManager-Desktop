@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
 using MySqlConnector;
+using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -13,9 +14,9 @@ namespace OrderManager
         {
             this.InitializeComponent();
 
-            foreach (string service in ConfigurationManager.AppSettings["service_name"].Split(',')) { serviceBox.Items.Add(service); }
-            foreach (string status in ConfigurationManager.AppSettings["status"].Split(',')) { statusBox.Items.Add(status); }
-            foreach (string platform in ConfigurationManager.AppSettings["platform"].Split(',')) { platformBox.Items.Add(platform); }
+            foreach (string service in ConfigurationManager.AppSettings.Get("service_name").Split(',')) { serviceBox.Items.Add(service); }
+            foreach (string status in ConfigurationManager.AppSettings.Get("status").Split(',')) { statusBox.Items.Add(status); }
+            foreach (string platform in ConfigurationManager.AppSettings.Get("platform").Split(',')) { platformBox.Items.Add(platform); }
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -40,6 +41,8 @@ namespace OrderManager
             db.OpenConnection();
             addCommandCommand.ExecuteScalar();
             db.CloseConnection();
+
+            addFrame.Navigate(typeof(Home), null, new SuppressNavigationTransitionInfo());
         }
 
         class Database
@@ -93,6 +96,30 @@ namespace OrderManager
                     }
                 });
         }
+
+        // New feature (maybe) -> add more platforms (ex) in the config file (permanent way : in the App.config file; and temporally way : in the "cache")
+        // Need :
+        //  - TextBox for the name of the platform (x:Name="addPlatform")
+        //  - Button for validate the addition (x:Name="addPlatformButton" Click="addPlatformButton_Click")
+        //
+        //private void addPlatformButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        //{
+        //    // "Cache" modification
+        //    Configuration configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        //    configFile.AppSettings.Settings["platform"].Value = ConfigurationManager.AppSettings.Get("platform") + "," + addPlatform.Text;
+        //    configFile.Save(ConfigurationSaveMode.Modified);
+        //    ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+
+        //    // App.config modification
+        //    ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap { ExeConfigFilename = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\..\\..\\..\\OrderManager\\App.config" };
+        //    Configuration configFile2 = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+        //    configFile2.AppSettings.Settings["platform"].Value = ConfigurationManager.AppSettings.Get("platform");
+        //    configFile2.Save(ConfigurationSaveMode.Modified);
+        //    ConfigurationManager.RefreshSection(configFile2.AppSettings.SectionInformation.Name);
+
+        //    // Refresh page
+        //    addFrame.Navigate(typeof(AddCommand), null, new SuppressNavigationTransitionInfo());
+        //}
     }
 
 }
