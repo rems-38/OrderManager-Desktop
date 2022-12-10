@@ -25,9 +25,9 @@
                 </muxc:NavigationView.MenuItems>
             </muxc:NavigationView>
 
-            <muxc:TextBlock x:Name="title" Text="Vous avez X commandes (dont Y en cours)" FontWeight="Bold" FontSize="40" Margin="70, 40"></muxc:TextBlock>
-
             <muxc:Grid x:Name="Content" Margin="40, 0" Width="1224">
+                <muxc:TextBlock x:Name="title" Text="Vous avez X commandes en cours" FontWeight="Bold" FontSize="40" Margin="70, 40"></muxc:TextBlock>
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="110" />
                 </Grid.RowDefinitions>

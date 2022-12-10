@@ -6,6 +6,9 @@
 # Perso
 *.config
 
+
+
+# Already here
 # User-specific files
 *.rsuser
 *.suo

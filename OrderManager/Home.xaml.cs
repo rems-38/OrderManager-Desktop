@@ -10,6 +10,7 @@ using System;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Shapes;
 using Microsoft.UI;
+using System.Collections.Generic;
 
 // "Console Log" : Debug.WriteLine() -> using System.Diagnostics;
 
@@ -50,59 +51,40 @@ namespace OrderManager
                 Grid.SetRow(grid, (2 * nbr[0]) + 1);
                 Content.Children.Add(grid);
 
-                switch (commandsResult.GetString(commandsResult.GetOrdinal("status")))
+                Database db2 = new Database();
+                string statusQuery = "SELECT data FROM settings WHERE type='status'";
+                MySqlCommand statusCommand = new MySqlCommand(statusQuery, db2.dbConnection);
+                db2.OpenConnection();
+                MySqlDataReader statusResult = statusCommand.ExecuteReader();
+
+                var statusColor = new Dictionary<string, string>();
+
+                while (statusResult.Read())
                 {
-                    case "Terminée":
-                        Rectangle rectStatus1 = new Rectangle { Fill = new SolidColorBrush(Colors.Green)};
+                    string[] statusArray = statusResult.GetString(0).Split(',');
+                    foreach (string statusCouple in statusArray)
+                    {
+                        statusColor.Add(statusCouple.Split(':')[0], statusCouple.Split(':')[1]);
+                    }
+
+                }
+
+                db2.CloseConnection();
+
+                foreach (KeyValuePair<string, string> pair in statusColor)
+                {
+                    if (pair.Key == commandsResult.GetString(commandsResult.GetOrdinal("status"))) {
+                        var myColor = (Color)Microsoft.UI.Xaml.Markup.XamlBindingHelper.ConvertValue(typeof(Color), pair.Value);
+                        Rectangle rectStatus1 = new Rectangle { Fill = new SolidColorBrush(myColor) };
                         Grid.SetColumn(rectStatus1, 1);
                         grid.Children.Add(rectStatus1);
 
-                        TextBlock textStatus1 = new TextBlock { Text = "Terminée", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
+                        TextBlock textStatus1 = new TextBlock { Text = pair.Key, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
                         Grid.SetColumn(textStatus1, 6);
                         grid.Children.Add(textStatus1);
-                        break;
-
-                    case "En cours":
-                        Rectangle rectStatus2 = new Rectangle { Fill = new SolidColorBrush(Colors.Blue) };
-                        Grid.SetColumn(rectStatus2, 1);
-                        grid.Children.Add(rectStatus2);
-
-                        TextBlock textStatus2 = new TextBlock { Text = "En cours", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                        Grid.SetColumn(textStatus2, 6);
-                        grid.Children.Add(textStatus2);
-
-                        nbr[1] += 1;
-                        break;
-
-                    case "Pas vendu":
-                        Rectangle rectStatus3 = new Rectangle { Fill = new SolidColorBrush(Colors.Yellow) };
-                        Grid.SetColumn(rectStatus3, 1);
-                        grid.Children.Add(rectStatus3);
-
-                        TextBlock textStatus3 = new TextBlock { Text = "Pas Vendu", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                        Grid.SetColumn(textStatus3, 6);
-                        grid.Children.Add(textStatus3);
-                        break;
-
-                    case "Pas payé":
-                        Rectangle rectStatus4 = new Rectangle { Fill = new SolidColorBrush(Colors.Orange) };
-                        Grid.SetColumn(rectStatus4, 1);
-                        grid.Children.Add(rectStatus4);
-
-                        TextBlock textStatus4 = new TextBlock { Text = "Pas Payé", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                        Grid.SetColumn(textStatus4, 6);
-                        grid.Children.Add(textStatus4);
-                        break;
-
-                    case "Abandon":
-                        Rectangle rectStatus5 = new Rectangle { Fill = new SolidColorBrush(Colors.Red) };
-                        Grid.SetColumn(rectStatus5, 1);
-                        grid.Children.Add(rectStatus5);
-
-                        TextBlock textStatus5 = new TextBlock { Text = "Abandon", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                        Grid.SetColumn(textStatus5, 6);
-                        grid.Children.Add(textStatus5);
-                        break;
+                        
+                        if (pair.Key == "En cours") nbr[1]++;
+                    }
                 }
 
                 Image img = new Image {
@@ -122,13 +104,16 @@ namespace OrderManager
                 Grid.SetColumn(textService, 4);
                 grid.Children.Add(textService);
 
-                TextBlock textPrice = new TextBlock { Text = commandsResult.GetInt32(commandsResult.GetOrdinal("price")).ToString() + "€", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
+                TextBlock textPrice = new TextBlock { Text = commandsResult.GetFloat(commandsResult.GetOrdinal("price")).ToString() + "€", VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
                 Grid.SetColumn(textPrice, 5);
                 grid.Children.Add(textPrice);
 
                 TextBlock textDesc = new TextBlock { Text = commandsResult.GetString(commandsResult.GetOrdinal("description")), VerticalAlignment = VerticalAlignment.Center };
                 Grid.SetColumn(textDesc, 7);
                 grid.Children.Add(textDesc);
+
+                // peut etre ajouter un bouton "open folder"
+                // ajouter un bouton "goto url" avec la page associé à la commande
 
                 Button btnModif = new Button { Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/edit_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
                 Grid.SetColumn(btnModif, 8);
@@ -138,10 +123,10 @@ namespace OrderManager
                 Grid.SetColumn(btnDelete, 10);
                 grid.Children.Add(btnDelete);
 
-                nbr[0] += 1;
+                nbr[0]++;
             }
 
-            title.Text = "Vous avez " + nbr[0] + " commandes (dont " + nbr[1] + " en cours)";
+            title.Text = "Vous avez " + nbr[1] + " commandes en cours"; // nombre total de commande -> nbr[0]
 
             db.CloseConnection();
         }
