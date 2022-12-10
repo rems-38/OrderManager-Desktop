@@ -37,17 +37,11 @@ namespace OrderManager
                 Content.RowDefinitions.Add(new RowDefinition { Height = new GridLength(25) });
 
                 Grid grid = new Grid();
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(7) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(140) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(110) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(575) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(5) });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(75) });
+                int[] spacing = { 70, 7, 75, 100, 140, 70, 110, 575, 75, 5, 75 };
+                for (int i = 0; i < spacing.Length; i++)
+                {
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(spacing[i]) });
+                }
                 Grid.SetRow(grid, (2 * nbr[0]) + 1);
                 Content.Children.Add(grid);
 
@@ -176,6 +170,7 @@ namespace OrderManager
         {
             NavView.IsPaneOpen = true;
             Content.Margin = new Thickness(200, 0, 0, 0);
+            title.Margin = new Thickness(230, 40, 0, 0);
 
             double[] size = Value_SizeChanged();
             Content.Width = size[0] - 200;
@@ -185,6 +180,7 @@ namespace OrderManager
         {
             NavView.IsPaneOpen = false;
             Content.Margin = new Thickness(40, 0, 0, 0);
+            title.Margin = new Thickness(70, 40, 0, 0);
 
             double[] size = Value_SizeChanged();
             Content.Width = size[0] - 40;

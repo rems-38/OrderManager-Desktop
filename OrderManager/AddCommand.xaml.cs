@@ -14,9 +14,27 @@ namespace OrderManager
         {
             this.InitializeComponent();
 
-            foreach (string service in ConfigurationManager.AppSettings.Get("service_name").Split(',')) { serviceBox.Items.Add(service); }
-            foreach (string status in ConfigurationManager.AppSettings.Get("status").Split(',')) { statusBox.Items.Add(status); }
-            foreach (string platform in ConfigurationManager.AppSettings.Get("platform").Split(',')) { platformBox.Items.Add(platform); }
+            Database db = new Database();
+            string typeQuery = "SELECT data FROM settings";
+            MySqlCommand typeCommand = new MySqlCommand(typeQuery, db.dbConnection);
+            db.OpenConnection();
+            MySqlDataReader typeResult = typeCommand.ExecuteReader();
+
+            int i = 0;
+            while (typeResult.Read())
+            {
+                if (i != 1)
+                {
+                    foreach (string data in typeResult.GetString(0).Split(',')) {
+                        if (i == 0) platformBox.Items.Add(data);
+                        if (i == 2) serviceBox.Items.Add(data);
+                    }
+                }
+                else foreach (string data in typeResult.GetString(0).Split(',')) statusBox.Items.Add(data.Split(':')[0]);
+                i++;
+            }
+
+            db.CloseConnection();
         }
 
         private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
