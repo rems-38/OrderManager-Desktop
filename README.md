@@ -11,10 +11,6 @@ Pour fonctionner, cette application à besoin d'un fichier de configuration suppl
 		<add key="user" value="your_username"/>
 		<add key="password" value="your_password"/>
 		<add key="database" value="name_of_the_db"/>
-
-		<add key="service_name" value="Service 1,Service_2"/>
-		<add key="status" value="En cours,Terminée,Abandon"/>
-		<add key="platform" value="Platforme1,Plaforme2"/>
 	</appSettings>
 </configuration>
 ```
