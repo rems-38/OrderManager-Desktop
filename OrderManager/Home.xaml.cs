@@ -11,6 +11,8 @@ using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Shapes;
 using Microsoft.UI;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Xml;
 
 // "Console Log" : Debug.WriteLine() -> using System.Diagnostics;
 
@@ -24,7 +26,7 @@ namespace OrderManager
             this.SizeChanged += Home_SizeChanged;
 
             Database db = new Database();
-            string commandsQuery = "SELECT * FROM commandes";
+            string commandsQuery = "SELECT * FROM commandes ORDER BY id DESC";
             MySqlCommand commandsCommand = new MySqlCommand(commandsQuery, db.dbConnection);
             db.OpenConnection();
             MySqlDataReader commandsResult = commandsCommand.ExecuteReader();
@@ -37,7 +39,7 @@ namespace OrderManager
                 Content.RowDefinitions.Add(new RowDefinition { Height = new GridLength(25) });
 
                 Grid grid = new Grid();
-                int[] spacing = { 70, 7, 75, 100, 140, 70, 110, 575, 75, 5, 75 };
+                int[] spacing = { 70, 7, 75, 100, 140, 70, 190, 575, 75};
                 for (int i = 0; i < spacing.Length; i++)
                 {
                     grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(spacing[i]) });
@@ -109,13 +111,10 @@ namespace OrderManager
                 // peut etre ajouter un bouton "open folder"
                 // ajouter un bouton "goto url" avec la page associé à la commande
 
-                Button btnModif = new Button { Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/edit_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
+                Button btnModif = new Button { Tag = nbr[0], Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/edit_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
+                btnModif.Click += btnModif_Click;
                 Grid.SetColumn(btnModif, 8);
                 grid.Children.Add(btnModif);
-                
-                Button btnDelete = new Button { Content = new Image { Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + "/Assets/waste_96px.png")) }, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment = HorizontalAlignment.Center };
-                Grid.SetColumn(btnDelete, 10);
-                grid.Children.Add(btnDelete);
 
                 nbr[0]++;
             }
@@ -203,5 +202,13 @@ namespace OrderManager
 
             return size;
         }
+
+        private void btnModif_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            int row = Int32.Parse(btn.Tag.ToString());
+
+            Debug.WriteLine("real row : " + row);
+        } 
     }
 }

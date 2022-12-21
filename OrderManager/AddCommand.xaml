@@ -18,7 +18,7 @@
 
         <muxc:Grid>
 
-            <muxc:NavigationView x:Name="NavView" PaneDisplayMode="LeftCompact" SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="False">
+            <muxc:NavigationView x:Name="NavView" PaneTitle="Menu" PaneDisplayMode="LeftCompact" CompactPaneLength="40" OpenPaneLength="200" PaneClosing="NavView_PaneClosing" PaneOpening="NavView_PaneOpening" SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="False" IsBackEnabled="True">
                 <muxc:NavigationView.MenuItems>
                     <muxc:NavigationViewItem Icon="Home" Content="Commandes" Tag="home"/>
                     <muxc:NavigationViewItem Icon="Add" Content="Nouvelle Commande" Tag="add"/>

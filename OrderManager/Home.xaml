@@ -18,15 +18,16 @@
 
         <muxc:Grid>
 
-            <muxc:NavigationView x:Name="NavView" PaneTitle="Menu" PaneDisplayMode="LeftCompact" CompactPaneLength="40" OpenPaneLength="200" PaneClosing="NavView_PaneClosing" PaneOpening="NavView_PaneOpening" SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="False">
+            <!-- Faire le bouton de retour en arrière dans le Nav (pas que enable) -->
+            <muxc:NavigationView x:Name="NavView" PaneTitle="Menu" PaneDisplayMode="LeftCompact" CompactPaneLength="40" OpenPaneLength="200" PaneClosing="NavView_PaneClosing" PaneOpening="NavView_PaneOpening" SelectionChanged="NavView_SelectionChanged" IsSettingsVisible="False" IsBackEnabled="True">
                 <muxc:NavigationView.MenuItems>
                     <muxc:NavigationViewItem Icon="Home" Content="Commandes" Tag="home"/>
                     <muxc:NavigationViewItem Icon="Add" Content="Nouvelle Commande" Tag="add"/>
                 </muxc:NavigationView.MenuItems>
             </muxc:NavigationView>
-
+            
             <muxc:TextBlock x:Name="title" Text="Vous avez X commandes en cours" FontWeight="Bold" FontSize="40" Margin="70, 40"></muxc:TextBlock>
-            <muxc:Grid x:Name="Content" Margin="40, 0" Width="1224">
+            <muxc:Grid x:Name="Content" Margin="40, 0" Width="1224" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="110"/>

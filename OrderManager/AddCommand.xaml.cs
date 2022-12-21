@@ -115,6 +115,14 @@ namespace OrderManager
                 });
         }
 
+        private void NavView_PaneOpening(NavigationView sender, object args)
+        {
+        }
+
+        private void NavView_PaneClosing(NavigationView sender, NavigationViewPaneClosingEventArgs args)
+        {
+        }
+
         // New feature (maybe) -> add more platforms (ex) in the config file (permanent way : in the App.config file; and temporally way : in the cache/memory)
         // Need :
         //  - TextBox for the name of the platform (x:Name="addPlatform")
